@@ -1,0 +1,8 @@
+article#leads
+  h1 Users
+  ul
+    each user in controller
+     if user.isAdmin
+      li.admin= user.fullName
+     else
+      li.player = user.fullName
