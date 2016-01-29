@@ -23,7 +23,7 @@ class Api::V1::UsersController < ApplicationController
 
   private
 
-  def User
+  def user
     User.find(params[:id])
   end
 

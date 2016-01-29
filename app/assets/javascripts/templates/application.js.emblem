@@ -2,7 +2,7 @@ header
   article
     .logo
       h1
-        a href="#" RAR Web Platform
+        a href="/" RAR Web Platform
 
 section#main
   = outlet

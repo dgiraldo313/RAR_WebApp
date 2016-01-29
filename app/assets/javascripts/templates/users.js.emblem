@@ -1,8 +1,14 @@
-article#leads
+article#users
   h1 Users
   ul
     each user in controller
-     if user.isAdmin
-      li.admin= user.fullName
-     else
-      li.player = user.fullName
+      if user.isAdmin
+       link-to 'user' user
+          li.admin
+            user.fullName
+      else
+       link-to 'user' user
+          li.player
+            user.fullName
+
+outlet

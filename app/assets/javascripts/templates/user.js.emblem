@@ -1,0 +1,23 @@
+outlet
+
+unless isEditing
+  article#user
+    h1
+      model.fullName
+      link-to 'edit' 'user.edit' model classNames='edit'
+
+    p
+      ' Name:
+      model.fullName
+
+    p
+      ' Email:
+      model.email
+
+    p
+      ' Phone:
+      model.phone
+
+    p
+      ' Role:
+      model.role

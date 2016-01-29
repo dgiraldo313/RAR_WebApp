@@ -25,3 +25,7 @@ App.User = DS.Model.extend({
   // model.save() // save changes to the database
   // model.rollback() // wipe clean any unsaved changes
   // model.destroyRecord() // delete a record from the database
+
+  App.User.reopenClass({
+    roles: ['admin', 'player']
+  });
