@@ -1,7 +1,12 @@
 article#users
-  h1 Users
+  h1
+    |Users
+    link-to 'users.new' | New User
+
+  view Ember.TextField value=search placeholder="search" classNames="search"
+
   ul
-    each user in controller
+    each user in users
       if user.isAdmin
        link-to 'user' user
           li.admin

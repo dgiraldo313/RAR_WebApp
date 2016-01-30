@@ -29,3 +29,12 @@ App.User = DS.Model.extend({
   App.User.reopenClass({
     roles: ['admin', 'player']
   });
+
+//validations
+  App.User.reopenClass({
+
+    valid: function(fields) {
+      return fields.firstName && fields.lastName && fields.phone && fields.email && fields.role
+    }
+
+  });

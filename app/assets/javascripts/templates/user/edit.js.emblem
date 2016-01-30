@@ -25,5 +25,6 @@ article#user
         dd: view Ember.Select content=App.User.roles value=model.role
 
     fieldset.actions
+      a.delete href='#' click="delete" delete
       input type='submit' value='Save Changes' click="saveChanges"
       a.cancel href="#" click="cancel" cancel

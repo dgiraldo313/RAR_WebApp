@@ -1,4 +1,4 @@
-App.UserEditController = Ember.ObjectController.extend({
+App.UserEditController = Ember.Controller.extend({
   actions: {
 
     saveChanges: function() {
@@ -11,6 +11,13 @@ App.UserEditController = Ember.ObjectController.extend({
     cancel: function() {
       this.get('model').rollback();
       this.transitionToRoute('user');
+    },
+
+    delete: function() {
+      var self = this;
+      this.get('model').destroyRecord().then(function() {
+        self.transitionToRoute('users');
+      });
     }
 
   }
