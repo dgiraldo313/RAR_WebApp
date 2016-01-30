@@ -22,7 +22,7 @@ article#user
 
       dl
         dt: label Phone:
-        dd: view Ember.Select content=App.User.roles value=model.roles
+        dd: view Ember.Select content=App.User.roles value=model.role
 
     fieldset.actions
       input type='submit' value='Save Changes' click="saveChanges"

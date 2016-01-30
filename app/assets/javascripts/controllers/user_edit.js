@@ -1,5 +1,4 @@
 App.UserEditController = Ember.ObjectController.extend({
-
   actions: {
 
     saveChanges: function() {
