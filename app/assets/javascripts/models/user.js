@@ -27,14 +27,14 @@ App.User = DS.Model.extend({
   // model.destroyRecord() // delete a record from the database
 
   App.User.reopenClass({
-    roles: ['admin', 'player']
+    roles: ['--Select--','admin', 'player']
   });
 
 //validations
   App.User.reopenClass({
 
     valid: function(fields) {
-      return fields.firstName && fields.lastName && fields.phone && fields.email && fields.role
+      return fields.firstName && fields.lastName
     }
 
   });
