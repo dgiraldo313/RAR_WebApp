@@ -1,3 +1,3 @@
 class PlayerSerializer < ActiveModel::Serializer
-  attributes :PlayerId, :first_name, :last_name, :email, :gender
+  attributes :id, :first_name, :last_name, :email, :gender
 end

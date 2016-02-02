@@ -23,12 +23,12 @@ class Api::V1::PlayersController < ApplicationController
 
   private
 
-  def user
-    User.find(params[:id])
+  def player
+    Player.find(params[:id])
   end
 
-  def user_params
-    params.require(:player).permit(:first_name, :last_name, :email, :phone, :role)
+  def player_params
+    params.require(:player).permit(:first_name, :last_name, :email, :gender)
   end
 
 end
