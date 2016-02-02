@@ -11,7 +11,20 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20160202163645) do
+ActiveRecord::Schema.define(version: 20160202200556) do
+
+  create_table "admins", force: true do |t|
+    t.integer  "AdminID"
+    t.datetime "created_at", null: false
+    t.string   "first_name"
+    t.string   "last_name"
+    t.string   "email"
+    t.string   "gender"
+    t.date     "DOB"
+    t.string   "username"
+    t.string   "password"
+    t.datetime "updated_at", null: false
+  end
 
   create_table "players", force: true do |t|
     t.integer  "PlayerID"
