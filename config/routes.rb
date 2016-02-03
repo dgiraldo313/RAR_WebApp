@@ -8,7 +8,12 @@ EmberHelloWorld::Application.routes.draw do
   #     resources :admins
   #   end
   # end
-  # resources :users
+
+  devise_scope :user do
+    get "login", to: "devise/sessions#new"
+
+  end
+  resources :user, only: [:show]
   root to: 'home#index'
   # get '*path', to: 'home#index'
 end
