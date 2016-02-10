@@ -1,4 +1,5 @@
 class PlayersController < ApplicationController
+  before_action :require_research
   def index
     @players= Player.all
   end
@@ -21,7 +22,7 @@ class PlayersController < ApplicationController
     @player = Player.new(player_params)
     if @player.save
       session[:player_id]= @player.id
-      flash[:notice] = "Thank you for signing up"
+      flash[:notice] = "Thank you for registering"
       redirect_to root_path
     else
       # flash[:error] = "Player could not be created"

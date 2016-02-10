@@ -10,18 +10,23 @@ class ApplicationController < ActionController::Base
   # end
   # helper_method :logged_in?
   #
-  # def current_user
-  # 	@current_user ||= User.find(session[:id]) if session[:id]
-  # end
+  def current_research
+  	@current_research ||= Research.find(session[:research_id]) if session[:research_id]
+  end
 
-  # helper_method :current_user
-  #
-  # def require_user
-  # 	if current_user
-  # 		true
-  # 	else
-  # 		flash[:notice]= 'You must be logged in to access that page.'
-  # 		redirect_to :login
-  # 	end
-  # end
+  helper_method :current_research
+
+  def require_research
+  	if current_research
+  		true
+  	else
+  		flash[:notice]= 'You must have a PIN to access that page.'
+  		redirect_to root_path
+  	end
+  end
+
+  ##solution for devise redirecting to root
+  def after_sign_in_path_for(resource)
+    rails_admin_path #your path
+  end
 end

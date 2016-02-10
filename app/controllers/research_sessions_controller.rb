@@ -5,11 +5,12 @@ class ResearchSessionsController < ApplicationController
 
   	if research
   		session[:research_id] = research.id
-  		flash[:success] = "Thanks for logging in!"
-  		redirect_to new_player_path
+  		flash[:success] = "Thanks for joining our study!"
+  		redirect_to register_path
   	else
-  		flash[:error] = "There was a problem logging in. Please check your username and password"
-  		render action: 'new'
+  		flash[:error] = "There was a problem joining the study. Please check your PIN"
+  		# render action: 'new'
+      redirect_to root_path
   	end
   end
 
