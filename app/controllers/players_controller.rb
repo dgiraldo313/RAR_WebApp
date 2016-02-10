@@ -17,6 +17,7 @@ class PlayersController < ApplicationController
   end
 
   def create
+    # :research_id = session[:research_id]
     @player = Player.new(player_params)
     if @player.save
       session[:player_id]= @player.id
@@ -52,6 +53,6 @@ class PlayersController < ApplicationController
 
   private
   def player_params
-    params.require(:player).permit(:first_name, :last_name,:email,:gender, :DOB, :education_level,:race,:household_size,:household_income)
+    params.require(:player).permit(:first_name, :last_name,:email,:gender, :DOB, :education_level,:race,:household_size,:household_income, :research_id)
   end
 end

@@ -55,5 +55,6 @@
     <%= f.select :household_income, ["Less than $24,999","$25,000 to $49,999","$50,000 to $99,999","$100,000 or more"] %>
   </div>
   <br />
+  <%= f.hidden_field :research_id, :value => session[:research_id]%>
     <%= f.submit %>
 <% end %>

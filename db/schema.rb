@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20160210053345) do
+ActiveRecord::Schema.define(version: 20160210220610) do
 
   create_table "admins", force: true do |t|
     t.string   "email",                  default: "",   null: false
@@ -35,7 +35,6 @@ ActiveRecord::Schema.define(version: 20160210053345) do
   add_index "admins", ["reset_password_token"], name: "index_admins_on_reset_password_token", unique: true, using: :btree
 
   create_table "players", force: true do |t|
-    t.integer  "PlayerID"
     t.datetime "created_at",       null: false
     t.string   "first_name"
     t.string   "last_name"
@@ -47,6 +46,7 @@ ActiveRecord::Schema.define(version: 20160210053345) do
     t.string   "household_size"
     t.string   "household_income"
     t.datetime "updated_at",       null: false
+    t.integer  "research_id"
   end
 
   create_table "players_researches", id: false, force: true do |t|
@@ -62,5 +62,7 @@ ActiveRecord::Schema.define(version: 20160210053345) do
     t.datetime "created_at"
     t.datetime "updated_at"
   end
+
+  add_index "researches", ["PIN"], name: "index_researches_on_PIN", unique: true, using: :btree
 
 end
