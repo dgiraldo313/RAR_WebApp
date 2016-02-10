@@ -1,6 +1,6 @@
 EmberHelloWorld::Application.routes.draw do
+  devise_for :admins
   mount RailsAdmin::Engine => '/admin', as: 'rails_admin'
-  devise_for :users
   # namespace :api do
   #   namespace :v1 do
   #     resources :users
@@ -9,11 +9,13 @@ EmberHelloWorld::Application.routes.draw do
   #   end
   # end
 
-  devise_scope :user do
+  devise_scope :admin do
     get "login", to: "devise/sessions#new"
 
   end
-  resources :user, only: [:show]
+
+  resources :players
+  resources :research_sessions, only: [:new, :create]
   root to: 'home#index'
   # get '*path', to: 'home#index'
 end
