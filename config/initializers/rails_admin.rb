@@ -2,7 +2,7 @@ RailsAdmin.config do |config|
 
   # checks to see who can access admin panel
   config.authorize_with do
-    redirect_to main_app.root_path unless current_user.try(:admin?)
+    redirect_to main_app.login_path unless current_admin.try(:admin?)
   end
   ### Popular gems integration
 

@@ -1,0 +1,60 @@
+
+
+<%= form_for(@player) do |f| %>
+  <% if @player.errors.any? %>
+    <div id= "error-explanation">
+      <h2><%= pluralize(@player.errors.count, "error") %> prohibited this user from being saved:</h2>
+
+      <ul>
+      <% @player.errors.full_messages.each do |msg| %>
+        <li><%= msg %></li>
+      <% end %>
+      </ul>
+    </div>
+  <% end %>
+  <div >
+    <%= f.text_field :first_name,placeholder: 'First Name' %>
+  </div></br>
+  <div >
+    <%= f.text_field :last_name, placeholder: 'Last Name' %>
+  </div><br/>
+  <div >
+    <%= f.text_field :email, placeholder: 'Email'  %>
+  </div><br/>
+  <div>
+    <%= f.label :gender %>
+    </br>
+    <%= f.radio_button :gender,  "Male"  %>
+	  <%= f.label "Male" %>
+    <%= f.radio_button :gender,  "Female"  %>
+	  <%= f.label "Female" %>
+  </div>
+  <br />
+  <div>
+    <%= f.label :DOB %>
+    <%= f.date_field(:DOB, :start_year => 1950) %>
+  </div>
+  <br />
+  <div>
+    <%= f.label :education_level %>
+	   <%= f.select :education_level, ['Some high school', 'High school graduate', 'Some college','Trade school/Vocational training',"Associate's degree","Bachelor's degree","Master's degree","Doctorate Degree"]%>
+  </div>
+  <br />
+  <div>
+    <%= f.label :race %>
+    <%= f.select :race, ["White","Hispanic or Latino","Black or African American", "Native American or American Indian", "Asian / Pacific Islander"] %>
+  </div>
+  <br />
+  <div>
+    <%= f.label :household_size %>
+    <%= f.select :household_size, ["1","2","3","4","5","6","7+"] %>
+  </div>
+  <br />
+  <div>
+    <%= f.label :household_income %>
+    <%= f.select :household_income, ["Less than $24,999","$25,000 to $49,999","$50,000 to $99,999","$100,000 or more"] %>
+  </div>
+  <br />
+  <%= f.hidden_field :research_id, :value => session[:research_id]%>
+    <%= f.submit %>
+<% end %>

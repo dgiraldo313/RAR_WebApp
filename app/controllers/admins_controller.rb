@@ -1,13 +1,13 @@
 ## dont need any of these because the gem for devise deals with all of this
-class UsersController < ApplicationController
-  before_action :authenticate_user!
+class AdminsController < ApplicationController
+  before_action :authenticate_admin!
 #   def index
 # 		@users= User.all
 # 	end
 #
-	def show
-		@user= User.find(params[:id])
-	end
+	# def show
+	# 	@user= User.find(params[:id])
+	# end
 #
 # 	def new
 # 		@user = User.new
