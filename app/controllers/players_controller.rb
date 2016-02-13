@@ -31,7 +31,8 @@ class PlayersController < ApplicationController
       # creates a cookie for the player id
       session[:player_id]= @player.id
       flash[:notice] = "Thank you for registering"
-      redirect_to root_path
+      # redirect to the research page to show a list of all games
+      redirect_to research_path(session[:research_id])
     # in case of any errors, player will be prompt to try again
     else
       # flash[:error] = "Player could not be created"

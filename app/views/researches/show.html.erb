@@ -1,0 +1,9 @@
+<h1> Welcome to the Study </h1>
+<p> This is a list of the games that you should perform...continue description</p>
+
+
+<%= @research.description%>
+
+<% @balloon_games.each do |game|%>
+  <h3> Risk Baloon <%= game.id %></h3>
+<% end %>
