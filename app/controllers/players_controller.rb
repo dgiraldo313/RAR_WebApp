@@ -1,5 +1,8 @@
 class PlayersController < ApplicationController
+  # authenticates page to make sure that a PIN is entered before player can register
   before_action :require_research
+
+
   def index
     @players= Player.all
   end
@@ -8,28 +11,36 @@ class PlayersController < ApplicationController
     @player= Player.find(params[:id])
   end
 
+  # creates new instance of a player
   def new
     @player = Player.new
   end
+
 
   def edit
     @player = Player.find(params[:id])
 
   end
 
+
   def create
-    # :research_id = session[:research_id]
+    # uses parameters to create new player
     @player = Player.new(player_params)
+    # if there are no errors creating player
     if @player.save
+      # creates a cookie for the player id
       session[:player_id]= @player.id
       flash[:notice] = "Thank you for registering"
       redirect_to root_path
+    # in case of any errors, player will be prompt to try again
     else
       # flash[:error] = "Player could not be created"
       render action: :new
     end
   end
 
+
+  # dont think player needs to be updated at any point?
   def update
     @player = Player.find(params[:id])
     if @player.update_attributes(player_params)
@@ -41,6 +52,7 @@ class PlayersController < ApplicationController
     end
   end
 
+  # dont think player needs to be deleted at any point?
   def destroy
     @player = Player.find(params[:id])
     if @player.destroy

@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20160210220610) do
+ActiveRecord::Schema.define(version: 20160213000525) do
 
   create_table "admins", force: true do |t|
     t.string   "email",                  default: "",   null: false
@@ -64,5 +64,15 @@ ActiveRecord::Schema.define(version: 20160210220610) do
   end
 
   add_index "researches", ["PIN"], name: "index_researches_on_PIN", unique: true, using: :btree
+
+  create_table "risk_balloon_games", force: true do |t|
+    t.integer  "inflation_rate"
+    t.integer  "max_inflation"
+    t.integer  "cash_multiplier"
+    t.string   "balloon_color"
+    t.datetime "created_at"
+    t.datetime "updated_at"
+    t.integer  "research_id"
+  end
 
 end
