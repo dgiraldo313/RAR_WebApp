@@ -15,3 +15,7 @@ gem 'ffaker'
 gem 'puma'
 gem 'devise'
 gem 'rails_admin'
+
+group :production do
+  gem 'pg'
+end
