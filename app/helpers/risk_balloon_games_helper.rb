@@ -1,0 +1,2 @@
+module RiskBalloonGamesHelper
+end

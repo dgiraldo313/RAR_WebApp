@@ -17,6 +17,7 @@ EmberHelloWorld::Application.routes.draw do
   resources :players, only: [:new, :create]
   get "register", to: "players#new"
   resources :research_sessions, only: [:new, :create]
+  resources :researches, only: [:show]
   root to: 'research_sessions#new'
   # get '*path', to: 'home#index'
 end
