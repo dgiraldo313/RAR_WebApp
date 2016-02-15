@@ -1,0 +1,225 @@
+
+//colors
+$background_sky_blue: rgba(103, 169, 237, 0.73);
+$black:  black;
+$white: white;
+$darker_green_button: rgb(63, 178, 56);
+$lighter_green_button: rgb(82, 209, 81);
+$darker_red_button: rgb(156, 19, 25);
+$lighter_red_button: rgb(209, 42, 39);
+//$lighter_red_balloon: rgb(255,48,25);
+//$middle_balloon: #d52020;
+$shadow_balloon: rgba(0,0,0,.3);
+
+//fonts
+$font_0: Helvetica;
+
+//urls
+$url_0: url('cloud_two.png');
+$url_1: url('cloud_two.png');
+$url_2: url('cloud_three.png');
+
+
+//mixins
+
+//transitions
+@mixin transition($transition...) {
+    -moz-transition:    $transition;
+    -o-transition:      $transition;
+    -webkit-transition: $transition;
+    transition:         $transition;
+}
+//animations
+@mixin animation($animation...) {
+    -moz-transition:    $animation;
+    -o-animation:      $animation;
+    -webkit-animation: $animation;
+    animation:         $animation;
+}
+
+//box shadow
+@mixin box-shadow($box-shadow...){
+    -moz-box-shadow:    $box-shadow;
+    -o-box-shadow:      $box-shadow;
+    -webkit-box-shadow: $box-shadow;
+    box-shadow:         $box-shadow;
+}
+
+
+//***************************************************
+ //Classes and ID's
+//***************************************************
+
+body {
+	background: $background_sky_blue;
+	width: 100%;
+	overflow: hidden;
+}
+
+br {
+	height: 0;
+}
+// .clouds {
+// 	position: absolute;
+// 	z-index: -1;
+// 	left: 0;
+// 	height: 300%;
+// 	width: 100%;
+// 	opacity: .8;
+//     @include animation(clouds 80s linear infinite);
+// }
+// #cloud-one {
+// 	background: $url_0;
+// }
+// #cloud-two {
+// 	background: $url_1;
+// }
+// #cloud-three {
+// 	background: $url_2;
+// }
+#main-container {
+	max-width: 980px;
+	height: auto;
+	display: block;
+	margin: 200px auto 200px auto;
+}
+#left-container {
+	width: 60%;
+	float: left;
+	padding-top: 50px;
+}
+#right-container {
+	width: 40%;
+	float: right;
+}
+#data-container {
+	height: 200px;
+	border: 1px $black solid;
+	background: $white;
+	//Instead of the line below you could use @include border-radius($radius, $vertical-radius)
+	border-radius: 20px;
+}
+#content {
+	width: 90%;
+	height: 180px;
+	margin: auto;
+	padding: 60px 0;
+}
+.description {
+	font-family: $font_0;
+	font-size: 24px;
+	display: block;
+	text-align: center;
+	height: 20%;
+	line-height: 30px;
+	div {
+		display: inline-block;
+	}
+}
+#button-container {
+	margin-top: 40px;
+}
+.button {
+	font-family: $font_0;
+	font-size: 10px;
+	display: inline-block;
+	position: relative;
+	text-align: center;
+	height: 50px;
+	line-height: 25px;
+	margin: 0 auto;
+	border-radius: 10px;
+	cursor: pointer;
+	color: $white;
+	@include transition(5s fade);
+}
+#inflate {
+	width: 47%;
+	border: 2px solid $darker_green_button;
+	background-color: $lighter_green_button;
+	float: left;
+	&:hover {
+		color: $white;
+		background-color: $darker_green_button;
+		border-color: $lighter_green_button;
+	}
+}
+#leave {
+	width: 47%;
+	border: 2px solid $darker_red_button;
+	background-color: $lighter_red_button;
+	float: right;
+	&:hover {
+		color: $white;
+		background-color: $darker_red_button;
+		border-color: $lighter_red_button;
+	}
+}
+#balloon {
+  @include animation(float 10s ease-in-out infinite);
+	@include transition(1.4s ease);
+}
+#balloon-head {
+	position: relative;
+	margin: auto;
+	left: 0;
+	width: 100px;
+	height: 130px;
+//	background: $lighter_red_balloon;
+	border-radius: 50%;
+	opacity: 0.9;
+}
+
+.balloon-shadow{
+    @include box-shadow(inset -10px -10px 20px $shadow_balloon);
+}
+
+#balloon-middle {
+	content: "";
+	position: relative;
+	margin: auto;
+	top: -1px;
+	width: 0;
+	border-left: 10px solid transparent;
+	border-right: 10px solid transparent;
+	border-bottom: 10px solid transparent;
+    @include box-shadow(inset -10px -10px 20px $shadow_balloon);
+}
+#balloon-tail {
+	content: "";
+	position: relative;
+	margin: auto;
+	top: -1px;
+	width: 2px;
+	height: 200px;
+	background: rgba(33,33,33,0.6);
+}
+
+
+
+
+//keyframes for animations
+@-webkit-keyframes float {
+	0%,100% {
+        transform: translateY(0px) rotate(3deg);
+	}
+	50% {
+        transform: translateY(-25px) rotate(-5deg);
+	}
+}
+@-webkit-keyframes clouds {
+	0% {
+		bottom: 0;
+	}
+	100% {
+		bottom: -200%;
+	}
+}
+@-moz-keyframes clouds {
+	0% {
+		bottom: 0;
+	}
+	100% {
+		border: -200%;
+	}
+}

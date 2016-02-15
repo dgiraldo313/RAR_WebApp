@@ -1,0 +1,52 @@
+<%= @risk_balloon_game.id %>
+
+  <div id="main-container">
+      <div id="left-container">
+        <div id="balloon">
+            <div id="balloon-head"></div>
+            <div id="balloon-middle"></div>
+            <div id="balloon-tail"></div>
+        </div>
+      </div>
+
+      <div id="right-container">
+          <div id="data-container">
+              <div id="content">
+                  <div class="description">Total Earned: $<div id="cash-earned">0</div></div>
+                  <br>
+                  <div class="description">Times Inflated: <div id="times-inflated">0</div></div>
+              </div>
+          </div>
+          <div id="button-container">
+                  <div class="button" id="inflate">
+                    <h1>Inflate Balloon</h1>
+                </div>
+                <div class="button" id="leave">
+                    <h1>Leave</h1>
+              </div>
+          </div>
+      </div>
+  </div>
+
+  <script>
+  //start game once DOM is loaded
+  $(document).ready(function(){
+      //start new game
+      var game = new Game();
+
+      //get all the variables ready
+      game.startGame();
+
+      //list all the variables for debugging purposes
+      game.listGameVariables();
+
+      //Gets triggered when "inflate" button is clicked
+      $("#inflate").click(function() {
+          game.inflate();
+      });
+      //Gets triggered when "inflate" button is clicked
+      $("#leave").click(function() {
+          game.leaveGame();
+      });
+  });
+  </script>

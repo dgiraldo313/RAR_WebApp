@@ -20,4 +20,5 @@ EmberHelloWorld::Application.routes.draw do
   resources :researches, only: [:show]
   root to: 'research_sessions#new'
   # get '*path', to: 'home#index'
+  resources :risk_balloon_games, only: [:show]
 end
