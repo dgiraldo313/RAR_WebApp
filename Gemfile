@@ -1,9 +1,6 @@
 source 'https://rubygems.org'
 
 gem 'coffee-rails'
-gem 'ember-rails'
-gem 'ember-source'
-gem 'emblem-rails'
 gem 'jbuilder'
 gem 'jquery-rails'
 gem 'mysql2', '~> 0.3.18'

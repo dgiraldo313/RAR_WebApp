@@ -1,15 +1,4 @@
 #= require jquery
 #= require jquery_ujs
-#= require handlebars
-#= require ember
-#= require ember-data
 #= require_self
-#= require app
 #= require_tree .
-
-# for more details see: http://emberjs.com/guides/application/
-# window.App = Ember.Application.create()
-
-# window.App = Ember.Application.create({rootElement: '#ember-app'})
-
-# ^^tells Ember to insert itself into the tag with id: ember-app
