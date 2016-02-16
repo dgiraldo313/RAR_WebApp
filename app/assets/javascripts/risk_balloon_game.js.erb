@@ -31,14 +31,20 @@ function Game(){
 	  this.inflation= 1;
 }
 
-Game.prototype.setGameDefaults = function(a,b,c,d,e,f){
+Game.prototype.readPlayerID = function(){
+  var player_id = parseInt($('#player_id').text());
+  return player_id;
+}
+
+Game.prototype.setGameDefaults = function(a,b,c,d,e){
     //set variables to initials variables
+
     this.inflation_rate= a;
     this.max_inflation=b;
     this.balloon_color = c;
     this.cash_multiplier = d;
-    this.player_id= e;
-    this.research_id=f;
+    this.research_id=e;
+    this.player_id= this.readPlayerID();
 }
 
 Game.prototype.listGameVariables = function(){
@@ -76,11 +82,10 @@ Game.prototype.startGame = function(){
         var im = session.max_inflation;
         var co = session.balloon_color;
         var cm = session.cash_multiplier;
-        var pi = session.player_id;
         var ri = session.research_id;
 
         //set up game defaults
-        game.setGameDefaults(ir,im, co, cm, pi, ri);
+        game.setGameDefaults(ir,im, co, cm, ri);
         game.setBalloonColor();
 
     });
