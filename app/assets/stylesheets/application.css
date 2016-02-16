@@ -10,6 +10,9 @@
  *
  *= require_self
  *= require_tree .
+ *= require bootstrap.min
+ *= require bootstrap-theme
+ *= require bootstrap-theme.min
  */
  @import url(http://fonts.googleapis.com/css?family=Roboto:400,700,300,400italic);
  @import url(http://fonts.googleapis.com/css?family=Maven+Pro:400,500,700);
@@ -235,14 +238,7 @@
    width: 90px;
  }
 
- input[type='submit'] {
-   background: #f57011;
-   border: none;
-   padding: 5px 25px 8px;
-   font-weight: 500;
-   color: white;
-   cursor: pointer;
- }
+
 
  footer {
    padding: 30px 0 0 0;
