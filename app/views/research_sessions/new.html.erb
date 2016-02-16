@@ -1,6 +1,21 @@
-<%= form_tag research_sessions_path do %>
-	<%= text_field_tag :PIN, params[:PIN], placeholder: 'PIN'%>
-	<div id=" actions">
-		<%= submit_tag "Submit" %>
+<body class="container text-center">
+	<div class="page-header">
+		<h1>Welcome to DrewLab</h1>
 	</div>
-<% end %>
+	<div class="col-lg-1 col-offset-6 centered">
+		<div class="panel panel-primary">
+			<div class="panel-heading">
+				<h3 class="panel-title">Enter Session PIN</h3>
+			</div>
+			<div class="panel-body">
+				<%= form_tag research_sessions_path do %>
+					<%= text_field_tag :PIN, params[:PIN], placeholder: 'PIN', :class => "form-control" %>
+					<br />
+					<div id=" actions">
+						<%= submit_tag "Submit", :class => "btn btn-success" %>
+					</div>
+				<% end %>
+			</div>
+		</div>
+	</div>
+</body>
