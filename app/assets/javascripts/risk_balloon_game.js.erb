@@ -98,7 +98,7 @@ Game.prototype.startGame = function(){
 
 // set color of balloon
 Game.prototype.setBalloonColor = function(){
-    var color= this.balloon_color;
+    var color= "#"+this.balloon_color;
     $("#balloon-head").css("background-color",color);
     $("#balloon-head").addClass("balloon-shadow");
     $("#balloon-middle").css("border-bottom-color",color);
