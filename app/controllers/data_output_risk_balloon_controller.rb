@@ -1,0 +1,2 @@
+class DataOutputRiskBalloonController < ApplicationController
+end

@@ -116,7 +116,7 @@ Game.prototype.checkBalloonPop = function(){
 Game.prototype.inflate = function(){
     //increase number of turns
     this.turns++;
-
+    
     if(!this.checkBalloonPop()){
         // trigger function to inflate ballon
         this.cashEarned+= this.turns*this.cash_multiplier;
