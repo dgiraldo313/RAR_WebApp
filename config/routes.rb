@@ -18,6 +18,7 @@ EmberHelloWorld::Application.routes.draw do
   get "register", to: "players#new"
   resources :research_sessions, only: [:new, :create]
   resources :researches, only: [:show]
+  resources :data_output_risk_balloon, only: [:new, :create]
   root to: 'research_sessions#new'
   # get '*path', to: 'home#index'
   resources :risk_balloon_games, only: [:show]
