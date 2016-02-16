@@ -1,18 +1,9 @@
-<body class="container">
-	<div class="jumbotron">
-		<div class="page-header">
-			<h1> Welcome to the Study</h1>
-		</div>
-		<div class="">
-			<p> This is a list of the games that you should perform...continue description</p>
-			
-			
-			<%= @research.description%>
-			<ul class="list-group">
-				<% @balloon_games.each do |game|%>
-				  <li class="list-group-item"> Risk Balloon <%= game.id %>  <%= link_to 'Start', game, :class => "btn btn-lg btn-link" %></li>
-				<% end %>
-			</ul>
-		</div>
-	</div>
-</body>
+<h1> Welcome to the Study </h1>
+<p> This is a list of the games that you should perform...continue description</p>
+
+
+<%= @research.description%>
+
+<% @balloon_games.each do |game|%>
+  <h3> Risk Balloon <%= game.id %>  <%= link_to 'Start', game %></h3>
+<% end %>
