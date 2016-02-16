@@ -25,7 +25,7 @@ class ResearchSessionsController < ApplicationController
   	session[:research_id]= nil
   	reset_session
     # eventually will redirect to thank you page
-  	redirect_to root_path, notice: "You have been logged out"
+  	redirect_to thankyou_path, notice: "Thank you for participating"
   end
 
 
