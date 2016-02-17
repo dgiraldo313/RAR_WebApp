@@ -39,6 +39,7 @@ RailsAdmin.config do |config|
     # history_index
     # history_show
 
+    # custom fields for rails admin
     config.model 'RiskBalloonGame' do
       edit do
         field :inflation_rate
@@ -47,5 +48,37 @@ RailsAdmin.config do |config|
         field :balloon_color, :color
       end
     end
+
+    config.model 'Admin' do
+      edit do
+        field :first_Name
+        field :last_Name
+        field :email
+        field :password
+      end
+    end
+
+    config.model 'Admin' do
+      edit do
+        field :first_Name
+        field :last_Name
+        field :email
+        field :password
+      end
+    end
+
+    config.model 'Research' do
+      edit do
+        field :name
+        field :description
+        field :PIN do
+          label "PIN"
+        end
+        field :risk_balloon_games
+
+      end
+    end
+
+
   end
 end
