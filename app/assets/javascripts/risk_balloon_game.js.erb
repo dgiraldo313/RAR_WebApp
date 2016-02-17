@@ -90,10 +90,7 @@ Game.prototype.startGame = function(){
         //set up game defaults
         game.setGameDefaults(ir,im, co, cm, ri, id);
         game.setBalloonColor();
-
     });
-
-
 }
 
 // set color of balloon
@@ -113,8 +110,6 @@ Game.prototype.checkBalloonPop = function(){
     return this.isBalloonPopped;
 }
 
-
-
 //Controls command line game and triggers all other functions
 Game.prototype.inflate = function(){
     //increase number of turns
@@ -132,12 +127,11 @@ Game.prototype.inflate = function(){
         inflateBallon();
     }else{
         //populate data to screen
+        this.cashEarned= 0;
         this.gameOver();
         popBalloon();
-        this.cashEarned= 0;
         console.log("You lost");
         console.log("Total cash: "+ this.cashEarned);
-
     }
 }
 
