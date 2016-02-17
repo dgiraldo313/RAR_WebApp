@@ -8,7 +8,7 @@ class DataOutputRiskBalloonController < ApplicationController
     if @data.save
       # creates a cookie for the data object
         # session[:data]= @data
-      flash[:error] = "Data was saved successfully"
+      flash[:success] = "Data was saved successfully"
     else
         flash[:error] = "There was an error saving the data"
     end
