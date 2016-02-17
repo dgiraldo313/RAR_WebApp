@@ -4,6 +4,8 @@ class RiskBalloonGamesController < ApplicationController
 
   def show
     @risk_balloon_game= RiskBalloonGame.find(params[:id])
+    @player_id = session[:player_id]
+
     respond_with  @risk_balloon_game
   end
 end

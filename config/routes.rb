@@ -13,12 +13,16 @@ EmberHelloWorld::Application.routes.draw do
     get "login", to: "devise/sessions#new"
 
   end
-
+  root to: 'research_sessions#new'
   resources :players, only: [:new, :create]
   get "register", to: "players#new"
-  resources :research_sessions, only: [:new, :create]
+  resources :research_sessions, only: [:new, :create, :destroy]
   resources :researches, only: [:show]
-  root to: 'research_sessions#new'
+  resources :data_output_risk_balloon, only: [:new, :create]
+  resources :thank_you, only:[:index]
+  get "thankyou", to: "thank_you#index"
+
+
   # get '*path', to: 'home#index'
   resources :risk_balloon_games, only: [:show]
 end

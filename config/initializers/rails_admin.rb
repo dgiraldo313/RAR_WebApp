@@ -1,3 +1,4 @@
+
 RailsAdmin.config do |config|
 
   # checks to see who can access admin panel
@@ -37,5 +38,14 @@ RailsAdmin.config do |config|
     ## With an audit adapter, you can add:
     # history_index
     # history_show
+
+    config.model 'RiskBalloonGame' do
+      edit do
+        field :inflation_rate
+        field :max_inflation
+        field :cash_multiplier
+        field :balloon_color, :color
+      end
+    end
   end
 end

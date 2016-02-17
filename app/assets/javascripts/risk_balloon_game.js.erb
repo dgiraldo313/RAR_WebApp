@@ -23,6 +23,7 @@ function Game(){
 	  this.cash_multiplier;
     this.player_id;
     this.research_id;
+    this.game_id;
 
     //initial default variables
     this.isBalloonPopped = false;
@@ -31,14 +32,21 @@ function Game(){
 	  this.inflation= 1;
 }
 
+Game.prototype.readPlayerID = function(){
+  var player_id = parseInt($('#player_id').text());
+  return player_id;
+}
+
 Game.prototype.setGameDefaults = function(a,b,c,d,e,f){
     //set variables to initials variables
+
     this.inflation_rate= a;
     this.max_inflation=b;
     this.balloon_color = c;
     this.cash_multiplier = d;
-    this.player_id= e;
-    this.research_id=f;
+    this.research_id=e;
+    this.player_id= this.readPlayerID();
+    this.game_id= f;
 }
 
 Game.prototype.listGameVariables = function(){
@@ -48,7 +56,7 @@ Game.prototype.listGameVariables = function(){
     console.log("Cash Multiplier: "+ this.cash_multiplier);
     console.log("Player Id: "+this.player_id);
     console.log("Research Id: "+this.research_id);
-    // console.log("Admin Id: "+this.adminId);
+    console.log("Game Id: "+this.game_id);
     console.log("Is balloon popped?: "+ this.isBalloonPopped);
     console.log("Number of Turns: "+ this.turns);
     console.log("Cashed Earned: "+ this.cashEarned);
@@ -72,15 +80,15 @@ Game.prototype.startGame = function(){
         var session= response;
         console.log(session);
         //set the content to the default variables
+        var id= session.id;
         var ir = session.inflation_rate;
         var im = session.max_inflation;
         var co = session.balloon_color;
         var cm = session.cash_multiplier;
-        var pi = session.player_id;
         var ri = session.research_id;
 
         //set up game defaults
-        game.setGameDefaults(ir,im, co, cm, pi, ri);
+        game.setGameDefaults(ir,im, co, cm, ri, id);
         game.setBalloonColor();
 
     });
@@ -90,7 +98,7 @@ Game.prototype.startGame = function(){
 
 // set color of balloon
 Game.prototype.setBalloonColor = function(){
-    var color= this.balloon_color;
+    var color= "#"+this.balloon_color;
     $("#balloon-head").css("background-color",color);
     $("#balloon-head").addClass("balloon-shadow");
     $("#balloon-middle").css("border-bottom-color",color);
@@ -111,6 +119,7 @@ Game.prototype.checkBalloonPop = function(){
 Game.prototype.inflate = function(){
     //increase number of turns
     this.turns++;
+    this.listGameVariables();
 
     if(!this.checkBalloonPop()){
         // trigger function to inflate ballon
@@ -145,14 +154,16 @@ Game.prototype.populateDOM = function(){
 Game.prototype.leaveGame= function(){
     $("#inflate").hide();
     $("#leave").hide();
+    $("#content").append('<br><div><a data-method="delete" href="/research_sessions/'+this.research_id+'">Continue</a></div>')
+    this.submitData();
 }
 
 Game.prototype.gameOver = function(){
+    //populate DOM with losing amount and game over message
+    $("#content").html('<div class="description">You Lost: $<div id="cash-lost">'+this.cashEarned+'</div></div><br><div class="description">Game Over!</div><br>');
     //hide buttons
     this.leaveGame();
-    //populate DOM with losing amount and game over message
-    $("#content").html('<div class="description">You Lost: $<div id="cash-lost">'+this.cashEarned+'</div></div><br><div class="description">Game Over!</div>');
-    centerBox();
+    // centerBox();
 }
 
 
@@ -162,6 +173,32 @@ Game.prototype.submitData = function(){
     //it should contain an ajax POST call to send
     //data to the server
     // The data will then be processed and save to database
+    console.log("this was triggered");
+    var url= window.location.protocol + "//" + window.location.host + "/"+"data_output_risk_balloon/";
+    var data=
+      {
+          "player_id": (this.player_id).toString(),
+          "risk_balloon_game_id": (this.game_id).toString(),
+          "inflation_level": (this.inflation).toString(),
+          "popped?": (this.isBalloonPopped).toString(),
+          "earnings": (this.cashEarned).toString(),
+          "turns_taken": (this.turns).toString(),
+          "time_played": "0"
+
+      };
+    // $.post(url, JSON.stringify(data), function(data){
+    //   console.log(data);
+    // });
+    $.ajax({
+      type: 'POST',
+      url: url,
+      data: JSON.stringify(data),
+      error: function(e) {
+        console.log(e);
+      },
+      dataType: "json",
+      contentType: "application/json"
+    });
 
 }
 
@@ -177,7 +214,8 @@ function inflateBallon(){
 
 //Pop Balloon
 function popBalloon(){
-   $("#balloon").hide();
+  //todo: add balloon popping animation
+   $("#balloon-head").effect("explode","easeInOutBounce", "slow");
 
 }
 
