@@ -30,6 +30,7 @@ function Game(){
 	  this.turns = 0;
 	  this.cashEarned = 1;
 	  this.inflation= 1;
+    this.finalEarnings;
 }
 
 Game.prototype.readPlayerID = function(){
@@ -90,10 +91,7 @@ Game.prototype.startGame = function(){
         //set up game defaults
         game.setGameDefaults(ir,im, co, cm, ri, id);
         game.setBalloonColor();
-
     });
-
-
 }
 
 // set color of balloon
@@ -113,8 +111,6 @@ Game.prototype.checkBalloonPop = function(){
     return this.isBalloonPopped;
 }
 
-
-
 //Controls command line game and triggers all other functions
 Game.prototype.inflate = function(){
     //increase number of turns
@@ -130,14 +126,14 @@ Game.prototype.inflate = function(){
         //populate data to screen
         this.populateDOM();
         inflateBallon();
+        this.finalEarnings= this.cashEarned;
     }else{
         //populate data to screen
+        this.finalEarnings= 0;
         this.gameOver();
         popBalloon();
-        this.cashEarned= 0;
         console.log("You lost");
         console.log("Total cash: "+ this.cashEarned);
-
     }
 }
 
@@ -154,7 +150,7 @@ Game.prototype.populateDOM = function(){
 Game.prototype.leaveGame= function(){
     $("#inflate").hide();
     $("#leave").hide();
-    $("#content").append('<br><div><a data-method="delete" href="/research_sessions/'+this.research_id+'">Continue</a></div>')
+    $("#content").append('<br><div class="btn btn-success"><a data-method="delete" href="/research_sessions/'+this.research_id+'">Continue</a></div>')
     this.submitData();
 }
 
@@ -181,7 +177,7 @@ Game.prototype.submitData = function(){
           "risk_balloon_game_id": (this.game_id).toString(),
           "inflation_level": (this.inflation).toString(),
           "popped?": (this.isBalloonPopped).toString(),
-          "earnings": (this.cashEarned).toString(),
+          "earnings": (this.finalEarnings).toString(),
           "turns_taken": (this.turns).toString(),
           "time_played": "0"
 

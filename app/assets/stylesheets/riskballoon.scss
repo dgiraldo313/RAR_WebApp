@@ -51,7 +51,6 @@ $url_2: url('cloud_three.png');
 //***************************************************
 
 body {
-	background: $background_sky_blue;
 	width: 100%;
 	overflow: hidden;
 }
@@ -77,11 +76,15 @@ br {
 // #cloud-three {
 // 	background: $url_2;
 // }
+#sky{
+  background: $background_sky_blue;
+}
 #main-container {
+  background: $background_sky_blue;
 	max-width: 980px;
 	height: auto;
 	display: block;
-	margin: 200px auto 200px auto;
+	margin: 150px auto;
 }
 #left-container {
 	width: 60%;
