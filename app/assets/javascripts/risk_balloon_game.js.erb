@@ -30,6 +30,7 @@ function Game(){
 	  this.turns = 0;
 	  this.cashEarned = 1;
 	  this.inflation= 1;
+    this.finalEarnings;
 }
 
 Game.prototype.readPlayerID = function(){
@@ -125,9 +126,10 @@ Game.prototype.inflate = function(){
         //populate data to screen
         this.populateDOM();
         inflateBallon();
+        this.finalEarnings= this.cashEarned;
     }else{
         //populate data to screen
-        this.cashEarned= 0;
+        this.finalEarnings= 0;
         this.gameOver();
         popBalloon();
         console.log("You lost");
@@ -175,7 +177,7 @@ Game.prototype.submitData = function(){
           "risk_balloon_game_id": (this.game_id).toString(),
           "inflation_level": (this.inflation).toString(),
           "popped?": (this.isBalloonPopped).toString(),
-          "earnings": (this.cashEarned).toString(),
+          "earnings": (this.finalEarnings).toString(),
           "turns_taken": (this.turns).toString(),
           "time_played": "0"
 
