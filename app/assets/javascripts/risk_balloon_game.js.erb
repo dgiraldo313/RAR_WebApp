@@ -196,6 +196,9 @@ Game.prototype.submitData = function(){
 // UI functions
 //inflate Balloon
 function inflateBallon(){
+    // checks to make sure player start game before they can leave
+    // makes leave button visible on click
+    $("#leave").css("visibility","visible");
     //inflates balloon
     $( "#balloon-head" ).animate({
         width: "+=10px",
@@ -215,5 +218,5 @@ function centerBox(){
     $("#right-container").animate({
         width: "50%",
     }, 300);
-    $("#right-container").css({'margin':'auto',     float:'none'});
+    $("#right-container").css({'margin':'auto',float:'none'});
 }
