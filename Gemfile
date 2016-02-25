@@ -13,6 +13,7 @@ gem 'ffaker'
 gem 'puma'
 gem 'devise'
 gem 'rails_admin'
+gem 'activerecord-session_store'
 
 group :production do
   gem 'pg'

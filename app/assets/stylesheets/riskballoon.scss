@@ -152,6 +152,7 @@ br {
 	border: 2px solid $darker_red_button;
 	background-color: $lighter_red_button;
 	float: right;
+  visibility: hidden;
 	&:hover {
 		color: $white;
 		background-color: $darker_red_button;
