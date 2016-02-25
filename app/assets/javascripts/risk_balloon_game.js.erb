@@ -4,17 +4,6 @@
 
 //Daniel Giraldo- 2015
 //Risk Balloon Prototype
-
-//to change color of balloon do the following:
-    //go to session.JSON file
-    //change value of color for the color you desire in HEX format
-    // these are some of the options
-    //list of colors
-        //red: #FF3019
-        //blue: #1930FF
-        //green: #30FF19
-        //yellow: #FFFF19
-
 function Game(){
     //Values coming from server
     this.inflation_rate;
@@ -46,7 +35,6 @@ Game.prototype.readNextGameId = function(){
 
 Game.prototype.setGameDefaults = function(a,b,c,d,e,f){
     //set variables to initials variables
-
     this.inflation_rate= a;
     this.max_inflation=b;
     this.balloon_color = c;
