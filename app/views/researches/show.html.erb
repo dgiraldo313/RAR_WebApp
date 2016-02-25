@@ -4,6 +4,5 @@
 
 <%= @research.description%>
 
-<% @balloon_games.each do |game|%>
-  <h3> Risk Balloon <%= game.id %>  <%= link_to 'Start', game %></h3>
-<% end %>
+</br>
+<button><%= link_to 'Start', @game_list.first %></button>

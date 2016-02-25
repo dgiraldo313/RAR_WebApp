@@ -5,7 +5,19 @@ class RiskBalloonGamesController < ApplicationController
   def show
     @risk_balloon_game= RiskBalloonGame.find(params[:id])
     @player_id = session[:player_id]
+    @game_list= session[:game_list]
 
-    respond_with  @risk_balloon_game
+
+    if @game_list
+      respond_with  @risk_balloon_game
+    else
+      redirect_to thankyou_path
+    end
+
+    # session.delete(:game_list)
+
+
+
   end
+
 end

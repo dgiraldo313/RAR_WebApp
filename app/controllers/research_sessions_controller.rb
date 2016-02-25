@@ -8,7 +8,10 @@ class ResearchSessionsController < ApplicationController
   	if research
       # create a cookie to save the research_id
   		session[:research_id] = research.id
-  		flash[:success] = "Thanks for joining our study!"
+      # create a cookie to save the games that belong to the research
+      session[:game_list] = research.risk_balloon_games
+
+      flash[:success] = "Thanks for joining our study!"
       # send player to the screen where they can register
   		redirect_to register_path
     # if the PIN doesnt belong to a research
@@ -27,6 +30,5 @@ class ResearchSessionsController < ApplicationController
     # eventually will redirect to thank you page
   	redirect_to thankyou_path, notice: "Thank you for participating"
   end
-
 
 end

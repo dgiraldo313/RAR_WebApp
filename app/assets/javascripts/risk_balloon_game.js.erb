@@ -24,6 +24,7 @@ function Game(){
     this.player_id;
     this.research_id;
     this.game_id;
+    this.next_game_id;
 
     //initial default variables
     this.isBalloonPopped = false;
@@ -38,6 +39,11 @@ Game.prototype.readPlayerID = function(){
   return player_id;
 }
 
+Game.prototype.readNextGameId = function(){
+  var next_game_id = parseInt($('#next_game_id').text());
+  return next_game_id;
+}
+
 Game.prototype.setGameDefaults = function(a,b,c,d,e,f){
     //set variables to initials variables
 
@@ -47,6 +53,7 @@ Game.prototype.setGameDefaults = function(a,b,c,d,e,f){
     this.cash_multiplier = d;
     this.research_id=e;
     this.player_id= this.readPlayerID();
+    this.next_game_id= this.readNextGameId();
     this.game_id= f;
 }
 
@@ -150,7 +157,7 @@ Game.prototype.populateDOM = function(){
 Game.prototype.leaveGame= function(){
     $("#inflate").hide();
     $("#leave").hide();
-    $("#content").append('<br><div class="btn btn-success"><a data-method="delete" href="/research_sessions/'+this.research_id+'">Continue</a></div>')
+    $("#content").append('<br><div class="btn btn-success"><a href="/risk_balloon_games/'+this.next_game_id+'">Continue</a></div>')
     this.submitData();
 }
 
