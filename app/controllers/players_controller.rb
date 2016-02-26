@@ -45,10 +45,8 @@ class PlayersController < ApplicationController
   # player's total_earnings need to be updated after everygame
   def update
     @player = Player.find(params[:id])
-    @previous_earnings = @player.total_earnings
-    @new_earnings= params[:total_earnings]
-    # problem is here need to find a way to combine @new_earnings and @previous_earnings
-    @total_earnings= @new_earnings
+    @new_earnings = params[:total_earnings]
+    @total_earnings = calculateTotalEarnings(@player, @new_earnings)
     @player.update_attributes(:total_earnings => @total_earnings)
   end
 
@@ -67,5 +65,12 @@ class PlayersController < ApplicationController
   private
   def player_params
     params.require(:player).permit(:first_name, :last_name,:email,:gender, :DOB, :education_level,:race,:household_size,:household_income, :research_id)
+  end
+
+  def calculateTotalEarnings(player, new_earnings)
+    previous_earnings = player.total_earnings
+    new_earnings = new_earnings.to_f
+    total_earnings = previous_earnings + new_earnings
+    return total_earnings
   end
 end
