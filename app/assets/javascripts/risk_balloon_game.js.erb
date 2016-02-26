@@ -124,7 +124,7 @@ Game.prototype.inflate = function(){
         this.finalEarnings= this.cashEarned;
     }else{
         //populate data to screen
-        this.finalEarnings= 0;
+        this.finalEarnings= 0.0;
         this.gameOver();
         popBalloon();
         console.log("You lost");
@@ -165,8 +165,9 @@ Game.prototype.submitData = function(){
     //data to the server
     // The data will then be processed and save to database
     console.log("this was triggered");
-    var url= window.location.protocol + "//" + window.location.host + "/"+"data_output_risk_balloon/";
-    var data=
+    var baseUrl= window.location.protocol + "//" + window.location.host;
+    var urlGameData= baseUrl+ "/"+"data_output_risk_balloon/";
+    var GameData=
       {
           "player_id": (this.player_id).toString(),
           "risk_balloon_game_id": (this.game_id).toString(),
@@ -180,10 +181,26 @@ Game.prototype.submitData = function(){
     // $.post(url, JSON.stringify(data), function(data){
     //   console.log(data);
     // });
+    //ajax request to save output data of each game
     $.ajax({
       type: 'POST',
-      url: url,
-      data: JSON.stringify(data),
+      url: urlGameData,
+      data: JSON.stringify(GameData),
+      error: function(e) {
+        console.log(e);
+      },
+      dataType: "json",
+      contentType: "application/json"
+    });
+
+    var urlPlayerEarnings= baseUrl+ "/"+"players/"+ this.player_id;
+    var PlayerData={
+      "total_earnings": (this.finalEarnings).toString()
+    }
+    $.ajax({
+      type: 'PATCH',
+      url: urlPlayerEarnings,
+      data: JSON.stringify(PlayerData),
       error: function(e) {
         console.log(e);
       },

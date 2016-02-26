@@ -13,7 +13,7 @@ class RiskBalloonGamesController < ApplicationController
     end
     # variables passed to the views
     @risk_balloon_game = RiskBalloonGame.find(params[:id])
-    @player_id = session[:player_id]
+    @player = session[:player]
     @game_list = session[:game_list]
     @game_id = @game_list.first
 
