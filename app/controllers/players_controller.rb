@@ -29,7 +29,7 @@ class PlayersController < ApplicationController
     # if there are no errors creating player
     if @player.save
       # creates a cookie for the player id
-      session[:player_id]= @player.id
+      session[:player]= @player
       flash[:notice] = "Thank you for registering"
       # redirect to the research page to show a list of all games
       redirect_to research_path(session[:research_id])
@@ -42,15 +42,12 @@ class PlayersController < ApplicationController
 
 
   # dont think player needs to be updated at any point?
+  # player's total_earnings need to be updated after everygame
   def update
     @player = Player.find(params[:id])
-    if @player.update_attributes(player_params)
-        flash[:success] = "Saved Player."
-        redirect_to root_path
-    else
-        flash[:error] = "That Player could not be saved."
-        render action: :edit
-    end
+    @new_earnings = params[:total_earnings]
+    @total_earnings = calculateTotalEarnings(@player, @new_earnings)
+    @player.update_attributes(:total_earnings => @total_earnings)
   end
 
   # dont think player needs to be deleted at any point?
@@ -68,5 +65,12 @@ class PlayersController < ApplicationController
   private
   def player_params
     params.require(:player).permit(:first_name, :last_name,:email,:gender, :DOB, :education_level,:race,:household_size,:household_income, :research_id)
+  end
+
+  def calculateTotalEarnings(player, new_earnings)
+    previous_earnings = player.total_earnings
+    new_earnings = new_earnings.to_f
+    total_earnings = previous_earnings + new_earnings
+    return total_earnings
   end
 end

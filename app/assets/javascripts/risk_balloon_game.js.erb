@@ -4,17 +4,6 @@
 
 //Daniel Giraldo- 2015
 //Risk Balloon Prototype
-
-//to change color of balloon do the following:
-    //go to session.JSON file
-    //change value of color for the color you desire in HEX format
-    // these are some of the options
-    //list of colors
-        //red: #FF3019
-        //blue: #1930FF
-        //green: #30FF19
-        //yellow: #FFFF19
-
 function Game(){
     //Values coming from server
     this.inflation_rate;
@@ -24,6 +13,7 @@ function Game(){
     this.player_id;
     this.research_id;
     this.game_id;
+    this.next_game_id;
 
     //initial default variables
     this.isBalloonPopped = false;
@@ -38,15 +28,20 @@ Game.prototype.readPlayerID = function(){
   return player_id;
 }
 
+Game.prototype.readNextGameId = function(){
+  var next_game_id = parseInt($('#next_game_id').text());
+  return next_game_id;
+}
+
 Game.prototype.setGameDefaults = function(a,b,c,d,e,f){
     //set variables to initials variables
-
     this.inflation_rate= a;
     this.max_inflation=b;
     this.balloon_color = c;
     this.cash_multiplier = d;
     this.research_id=e;
     this.player_id= this.readPlayerID();
+    this.next_game_id= this.readNextGameId();
     this.game_id= f;
 }
 
@@ -129,7 +124,7 @@ Game.prototype.inflate = function(){
         this.finalEarnings= this.cashEarned;
     }else{
         //populate data to screen
-        this.finalEarnings= 0;
+        this.finalEarnings= 0.0;
         this.gameOver();
         popBalloon();
         console.log("You lost");
@@ -150,7 +145,7 @@ Game.prototype.populateDOM = function(){
 Game.prototype.leaveGame= function(){
     $("#inflate").hide();
     $("#leave").hide();
-    $("#content").append('<br><div class="btn btn-success"><a data-method="delete" href="/research_sessions/'+this.research_id+'">Continue</a></div>')
+    $("#content").append('<br><div class="btn btn-success"><a href="/risk_balloon_games/'+this.next_game_id+'">Continue</a></div>')
     this.submitData();
 }
 
@@ -170,8 +165,9 @@ Game.prototype.submitData = function(){
     //data to the server
     // The data will then be processed and save to database
     console.log("this was triggered");
-    var url= window.location.protocol + "//" + window.location.host + "/"+"data_output_risk_balloon/";
-    var data=
+    var baseUrl= window.location.protocol + "//" + window.location.host;
+    var urlGameData= baseUrl+ "/"+"data_output_risk_balloon/";
+    var GameData=
       {
           "player_id": (this.player_id).toString(),
           "risk_balloon_game_id": (this.game_id).toString(),
@@ -185,10 +181,26 @@ Game.prototype.submitData = function(){
     // $.post(url, JSON.stringify(data), function(data){
     //   console.log(data);
     // });
+    //ajax request to save output data of each game
     $.ajax({
       type: 'POST',
-      url: url,
-      data: JSON.stringify(data),
+      url: urlGameData,
+      data: JSON.stringify(GameData),
+      error: function(e) {
+        console.log(e);
+      },
+      dataType: "json",
+      contentType: "application/json"
+    });
+
+    var urlPlayerEarnings= baseUrl+ "/"+"players/"+ this.player_id;
+    var PlayerData={
+      "total_earnings": (this.finalEarnings).toString()
+    }
+    $.ajax({
+      type: 'PATCH',
+      url: urlPlayerEarnings,
+      data: JSON.stringify(PlayerData),
       error: function(e) {
         console.log(e);
       },
@@ -201,6 +213,9 @@ Game.prototype.submitData = function(){
 // UI functions
 //inflate Balloon
 function inflateBallon(){
+    // checks to make sure player start game before they can leave
+    // makes leave button visible on click
+    $("#leave").css("visibility","visible");
     //inflates balloon
     $( "#balloon-head" ).animate({
         width: "+=10px",
@@ -220,5 +235,5 @@ function centerBox(){
     $("#right-container").animate({
         width: "50%",
     }, 300);
-    $("#right-container").css({'margin':'auto',     float:'none'});
+    $("#right-container").css({'margin':'auto',float:'none'});
 }

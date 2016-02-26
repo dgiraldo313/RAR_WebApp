@@ -14,11 +14,12 @@ EmberHelloWorld::Application.routes.draw do
 
   end
   root to: 'research_sessions#new'
-  resources :players, only: [:new, :create]
+  resources :players, only: [:new, :create, :update]
   get "register", to: "players#new"
   resources :research_sessions, only: [:new, :create, :destroy]
   resources :researches, only: [:show]
   resources :data_output_risk_balloon, only: [:new, :create]
+  resources :results, only:[:index]
   resources :thank_you, only:[:index]
   get "thankyou", to: "thank_you#index"
 
