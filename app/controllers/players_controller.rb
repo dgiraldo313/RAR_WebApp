@@ -29,7 +29,7 @@ class PlayersController < ApplicationController
     # if there are no errors creating player
     if @player.save
       # creates a cookie for the player id
-      session[:player_id]= @player.id
+      session[:player]= @player
       flash[:notice] = "Thank you for registering"
       # redirect to the research page to show a list of all games
       redirect_to research_path(session[:research_id])
