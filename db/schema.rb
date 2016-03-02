@@ -59,7 +59,6 @@ ActiveRecord::Schema.define(version: 20160225191922) do
     t.string   "household_income"
     t.datetime "updated_at",                     null: false
     t.integer  "research_id"
-    t.float    "total_earning",    default: 0.0
     t.float    "total_earnings",   default: 0.0
   end
 
