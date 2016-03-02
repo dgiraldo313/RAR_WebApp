@@ -1,3 +1,3 @@
 class RiskBalloonGame < ActiveRecord::Base
-  belongs_to :research
+  has_and_belongs_to_many :research
 end
