@@ -1,7 +1,7 @@
 	<div class="page-header">
 		<h1>Tell us about yourself</h1>
 	</div>
-<!--	<div class="container">-->
+	<div class="container">
 		<%= form_for(@player) do |f| %>
 		  <% if @player.errors.any? %>
 		    <div id= "error-explanation">
@@ -55,4 +55,4 @@
 		  <%= f.submit "Register", :class=> "btn btn-lg btn-primary btn-block" %>
 
 		<% end %>
-<!--	</div>-->
+	</div>
