@@ -136,29 +136,29 @@ br {
 	color: $white;
 	@include transition(5s fade);
 }
-#inflate {
-	width: 47%;
-	border: 2px solid $darker_green_button;
-	background-color: $lighter_green_button;
-	float: left;
-	&:hover {
-		color: $white;
-		background-color: $darker_green_button;
-		border-color: $lighter_green_button;
-	}
-}
-#leave {
-	width: 47%;
-	border: 2px solid $darker_red_button;
-	background-color: $lighter_red_button;
-	float: right;
-  visibility: hidden;
-	&:hover {
-		color: $white;
-		background-color: $darker_red_button;
-		border-color: $lighter_red_button;
-	}
-}
+//#inflate {
+//	width: 47%;
+//	border: 2px solid $darker_green_button;
+//	background-color: $lighter_green_button;
+//	float: left;
+//	&:hover {
+//		color: $white;
+//		background-color: $darker_green_button;
+//		border-color: $lighter_green_button;
+//	}
+//}
+//#leave {
+//	width: 47%;
+//	border: 2px solid $darker_red_button;
+//	background-color: $lighter_red_button;
+//	float: right;
+//  visibility: hidden;
+//	&:hover {
+//		color: $white;
+//		background-color: $darker_red_button;
+//		border-color: $lighter_red_button;
+//	}
+//}
 #balloon {
   @include animation(float 10s ease-in-out infinite);
 	@include transition(1.4s ease);
