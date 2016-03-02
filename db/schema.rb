@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20160302213119) do
+ActiveRecord::Schema.define(version: 20160302231228) do
 
   create_table "admins", force: true do |t|
     t.string   "email",                  default: "",   null: false
@@ -77,6 +77,11 @@ ActiveRecord::Schema.define(version: 20160302213119) do
   end
 
   add_index "researches", ["PIN"], name: "index_researches_on_PIN", unique: true, using: :btree
+
+  create_table "researches_risk_balloon_games", force: true do |t|
+    t.integer "research_id"
+    t.integer "risk_balloon_game_id"
+  end
 
   create_table "risk_balloon_games", force: true do |t|
     t.float    "initial_cash",   default: 0.1
