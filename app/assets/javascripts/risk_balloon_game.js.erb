@@ -145,7 +145,7 @@ Game.prototype.populateDOM = function(){
 Game.prototype.leaveGame= function(){
     $("#inflate").hide();
     $("#leave").hide();
-    $("#content").append('<br /><br /><div class="btn btn-primary btn-block"><a href="/risk_balloon_games/'+this.next_game_id+'">Continue</a></div>')
+    $("#content").append('<br /><br /><a href="/risk_balloon_games/'+this.next_game_id+'"><div class="btn btn-primary btn-block">Continue</div></a>')
     this.submitData();
 }
 

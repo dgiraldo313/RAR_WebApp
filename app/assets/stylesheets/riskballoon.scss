@@ -159,6 +159,9 @@ br {
 //		border-color: $lighter_red_button;
 //	}
 //}
+#leave {
+  visibility: hidden;
+}
 #balloon {
   @include animation(float 10s ease-in-out infinite);
 	@include transition(1.4s ease);
