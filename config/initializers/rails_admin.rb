@@ -42,10 +42,12 @@ RailsAdmin.config do |config|
     # custom fields for rails admin
     config.model 'RiskBalloonGame' do
       edit do
-        field :inflation_rate
+        field :initial_cash
         field :max_inflation
-        field :cash_multiplier
+        field :cash_increment
         field :balloon_color, :color
+        field :pixel_rate
+        field :inflation_rate
       end
     end
 
