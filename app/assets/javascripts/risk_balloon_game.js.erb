@@ -4,12 +4,20 @@
 
 //Daniel Giraldo- 2015
 //Risk Balloon Prototype
+
+//global variables
+
+  var widthInc0;
+  var heightInc;
+
 function Game(){
     //Values coming from server
     this.inflation_rate;
 	  this.max_inflation;
 	  this.balloon_color;
-	  this.cash_multiplier;
+    this.initial_cash;
+	  this.cash_increment;
+    this.pixel_rate;
     this.player_id;
     this.research_id;
     this.game_id;
@@ -18,7 +26,7 @@ function Game(){
     //initial default variables
     this.isBalloonPopped = false;
 	  this.turns = 0;
-	  this.cashEarned = 1;
+	  this.cashEarned = 0;
 	  this.inflation= 1;
     this.finalEarnings;
 }
@@ -33,23 +41,28 @@ Game.prototype.readNextGameId = function(){
   return next_game_id;
 }
 
-Game.prototype.setGameDefaults = function(a,b,c,d,e,f){
+Game.prototype.setGameDefaults = function(a,b,c,d,e,f,g,h){
     //set variables to initials variables
-    this.inflation_rate= a;
+    this.initial_cash= a;
     this.max_inflation=b;
-    this.balloon_color = c;
-    this.cash_multiplier = d;
-    this.research_id=e;
+    this.cash_increment = c;
+    this.balloon_color = d;
+    this.pixel_rate = e;
+    this.inflation_rate = f;
+    this.research_id=g;
+    this.game_id= h;
+    this.cashEarned= this.initial_cash;
     this.player_id= this.readPlayerID();
     this.next_game_id= this.readNextGameId();
-    this.game_id= f;
+    widthInc= this.pixel_rate;
+    heightInc= this.pixel_rate;
 }
 
 Game.prototype.listGameVariables = function(){
     console.log("Inflation Rate: "+ this.inflation_rate);
     console.log("Inflation Max: "+ this.max_inflation);
     console.log("Color: "+ this.balloon_color);
-    console.log("Cash Multiplier: "+ this.cash_multiplier);
+    console.log("Cash Multiplier: "+ this.cash_increment);
     console.log("Player Id: "+this.player_id);
     console.log("Research Id: "+this.research_id);
     console.log("Game Id: "+this.game_id);
@@ -58,7 +71,6 @@ Game.prototype.listGameVariables = function(){
     console.log("Cashed Earned: "+ this.cashEarned);
     console.log("Inflation: "+ this.inflation);
 }
-
 
 Game.prototype.startGame = function(){
     var url = document.URL; // url to get JSON content
@@ -76,15 +88,17 @@ Game.prototype.startGame = function(){
         var session= response;
         console.log(session);
         //set the content to the default variables
-        var id= session.id;
-        var ir = session.inflation_rate;
-        var im = session.max_inflation;
+        var ic = session.initial_cash;
+        var mi = session.max_inflation;
+        var ci = session.cash_increment;
         var co = session.balloon_color;
-        var cm = session.cash_multiplier;
+        var pr = session.pixel_rate;
+        var ir = session.inflation_rate;
         var ri = session.research_id;
+        var id = session.id;
 
         //set up game defaults
-        game.setGameDefaults(ir,im, co, cm, ri, id);
+        game.setGameDefaults(ic, mi, ci, co, pr, ir, ri, id);
         game.setBalloonColor();
     });
 }
@@ -114,8 +128,8 @@ Game.prototype.inflate = function(){
 
     if(!this.checkBalloonPop()){
         // trigger function to inflate ballon
-        this.cashEarned+= this.turns*this.cash_multiplier;
-        this.inflation*= this.inflation_rate;
+        this.cashEarned+= this.cash_increment;
+        this.inflation+= this.inflation_rate;
         console.log("You've inflated the balloon "+ this.turns + " times");
         console.log("Total cash: "+ this.cashEarned);
         //populate data to screen
@@ -136,7 +150,7 @@ Game.prototype.inflate = function(){
     //these functions will change the appearance of the content
 
 Game.prototype.populateDOM = function(){
-    $("#cash-earned").html(this.cashEarned);
+    $("#cash-earned").html(Math.round(this.cashEarned * 100) / 100);
     $("#times-inflated").html(this.turns);
 
 }
@@ -145,13 +159,13 @@ Game.prototype.populateDOM = function(){
 Game.prototype.leaveGame= function(){
     $("#inflate").hide();
     $("#leave").hide();
-    $("#content").append('<br /><br /><div class="btn btn-primary btn-block"><a href="/risk_balloon_games/'+this.next_game_id+'">Continue</a></div>')
+    $("#content").append('<br /><br /><a href="/risk_balloon_games/'+this.next_game_id+'"><div class="btn btn-primary btn-block">Continue</div></a>')
     this.submitData();
 }
 
 Game.prototype.gameOver = function(){
     //populate DOM with losing amount and game over message
-    $("#content").html('<div class="description">You Lost: $<div id="cash-lost">'+this.cashEarned+'</div></div><br><div class="description">Game Over!</div><br>');
+    $("#content").html('<div class="description">You Lost: $<div id="cash-lost">'+Math.round(this.cashEarned * 100) / 100+'</div></div><br><div class="description">Game Over!</div><br>');
     //hide buttons
     this.leaveGame();
     // centerBox();
@@ -218,8 +232,8 @@ function inflateBallon(){
     $("#leave").css("visibility","visible");
     //inflates balloon
     $( "#balloon-head" ).animate({
-        width: "+=10px",
-        height: "+=10px"
+        width: "+="+widthInc+"px",
+        height: "+="+heightInc+"px"
       }, 300);
 }
 
