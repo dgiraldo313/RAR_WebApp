@@ -16,6 +16,10 @@ class RiskBalloonGamesController < ApplicationController
     @player = session[:player]
     @game_list = session[:game_list]
     @game_id = @game_list.first
+    # reloads the player object to retrive latest data
+    player= session[:player].reload
+    # passes variable to views with the latest total_earnings
+    @total_earnings = player.total_earnings
 
     # check if array is not empty
     if session[:game_list].any?

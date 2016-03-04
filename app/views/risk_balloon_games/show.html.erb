@@ -23,6 +23,7 @@ $(document).ready(function(){
 <body id="sky">
   <div id="player_id" style="display:none"><%= @player.id %></div>
   <div id="next_game_id" style="display:none"><%= @game_id%></div>
+  <div >Total Earnings: $<b id="total_earnings"><%= number_with_precision(@total_earnings, :precision => 2) %></b></div>
 
 
     <div id="main-container">
