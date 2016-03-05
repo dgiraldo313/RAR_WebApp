@@ -1,5 +1,5 @@
 <div class="jumbotron">
-	<h1> Results Page </h1>
+	<h1>Results</h1>
 	
 	<p style="font-size: 30px;" id="total_earnings">You Earned: <b>$<%= number_with_precision(@total_earnings, :precision => 2) %></b></p>
 	<%= link_to 'Complete Session', research_session_path(session[:research_id]), method: :delete,:class=> "btn btn-lg btn-primary btn-block" %>
