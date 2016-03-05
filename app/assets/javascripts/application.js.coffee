@@ -3,3 +3,4 @@
 #= require jquery-ui
 #= require_tree .
 #= require bootstrap.min
+#= require bootstrap
