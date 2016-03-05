@@ -1,10 +1,6 @@
 <div class="jumbotron">
 	<h1>Welcome!</h1>
-	<p>Thanks for deciding to help us out with our research. We have a number of games we'd like you to play, and at the end you could win some cash! Cool right? Click the <b>'Start'</b> button below to continue to the first game.</p>
-	
-	
-	<%= @research.description%>
-	
+	<p><%= @research.description%></p>
 	</br>
 	<%= link_to 'Start', risk_balloon_game_path(@game_id), :class=> "btn btn-lg btn-info btn-block" %>
 </div>

@@ -23,8 +23,29 @@ $(document).ready(function(){
 <body id="sky">
   <div id="player_id" style="display:none"><%= @player.id %></div>
   <div id="next_game_id" style="display:none"><%= @game_id%></div>
-
-
+  <!-- Instructions Modal -->
+	  <button type="button" class="btn btn-warning pull-right" data-toggle="modal"  onClick="$('#instruction-modal').modal('show')">Instructions</button>
+	  
+	  <!-- Modal -->
+	  <div class="modal fade" id="instruction-modal" tabindex="-1" role="dialog" aria-labelledby="instruction-modall">
+	    <div class="modal-dialog" role="document">
+	      <div class="modal-content">
+	        <div class="modal-header">
+	          <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+	          <h4 class="modal-title" id="instruction-modal">Instructions for this game</h4>
+	        </div>
+	        <div class="modal-body">
+	          <p>You'll start with $<%= number_with_precision(@risk_balloon_game.initial_cash, :precision => 2) %>. Every time you click "Inflate Balloon," you'll earn $<%= number_with_precision(@risk_balloon_game.cash_increment, :precision => 2) %>. But be careful! Inflate the balloon, too much, and it will pop, and you will lose all of your hard-earned cash!</p>
+	          <p class="text-warning"><small>You'll only be shown this once! But you can always see the instructions again with the button in the upper right corner of the screen.</small></p>
+	        </div>
+	        <div class="modal-footer">
+	          <button type="button" class="btn btn-primary" onClick="$('#instruction-modal').modal('hide')">Got it!</button>
+	        </div>
+	      </div>
+	    </div>
+	  </div>
+  <!-- End Instructions Modal -->
+  
     <div id="main-container">
         <div id="left-container">
           <div id="balloon">
