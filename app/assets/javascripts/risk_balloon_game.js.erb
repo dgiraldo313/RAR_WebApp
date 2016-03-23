@@ -7,7 +7,7 @@
 
 //global variables
 
-  var widthInc0;
+  var widthInc;
   var heightInc;
 
 function Game(){
@@ -150,9 +150,26 @@ Game.prototype.inflate = function(){
     //these functions will change the appearance of the content
 
 Game.prototype.populateDOM = function(){
+    var increment=
+    // $("#total_earnings").html(updateEarnings());
     $("#cash-earned").html(Math.round(this.cashEarned * 100) / 100);
     $("#times-inflated").html(this.turns);
 
+}
+
+Game.prototype.updateEarnings = function(){
+  var currentEarnings = parseFloat($('#total_earnings').text());
+  var increment= (Math.round(this.cashEarned * 100) / 100);
+  //this function will check for the initial earnings and check
+  //will probably need to add a new variable for initialEarnings
+    //if (currentEarnings!== initialEarnings){
+        // updatedEarnings= (Math.round(this.cashEarned * 100) / 100);
+      // }else{
+        // the difference of the previous increment and the current cash-earned
+      // }
+
+
+  return updatedEarnings;
 }
 
 //hide buttons so that user can't keep playing
