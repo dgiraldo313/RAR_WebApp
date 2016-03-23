@@ -23,10 +23,10 @@ $(document).ready(function(){
 <body id="sky">
   <div id="player_id" style="display:none"><%= @player.id %></div>
   <div id="next_game_id" style="display:none"><%= @game_id%></div>
-<<<<<<< HEAD
+
   <!-- Instructions Modal -->
 	  <button type="button" class="btn btn-warning pull-right" data-toggle="modal"  onClick="$('#instruction-modal').modal('show')">Instructions</button>
-	  
+
 	  <!-- Modal -->
 	  <div class="modal fade" id="instruction-modal" tabindex="-1" role="dialog" aria-labelledby="instruction-modall">
 	    <div class="modal-dialog" role="document">
@@ -46,12 +46,10 @@ $(document).ready(function(){
 	    </div>
 	  </div>
   <!-- End Instructions Modal -->
-  
-=======
+
+
   <div >Total Earnings: $<b id="total_earnings"><%= number_with_precision(@total_earnings, :precision => 2) %></b></div>
 
-
->>>>>>> add_total_earnings_to_balloon_game
     <div id="main-container">
         <div id="left-container">
           <div id="balloon">

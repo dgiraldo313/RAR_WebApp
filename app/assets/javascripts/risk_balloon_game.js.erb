@@ -176,7 +176,7 @@ Game.prototype.updateEarnings = function(){
 Game.prototype.leaveGame= function(){
     $("#inflate").hide();
     $("#leave").hide();
-    $("#content").append('<br /><br /><a href="/risk_balloon_games/'+this.next_game_id+'"><div class="btn btn-primary btn-block">Continue</div></a>')
+    $("#content").append('<br /><a href="/risk_balloon_games/'+this.next_game_id+'"><div class="btn btn-primary btn-block">Continue</div></a>')
     this.submitData();
 }
 
