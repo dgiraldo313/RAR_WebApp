@@ -1,4 +1,4 @@
-EmberHelloWorld::Application.routes.draw do
+DrewLab::Application.routes.draw do
   devise_for :admins
   mount RailsAdmin::Engine => '/admin', as: 'rails_admin'
   # namespace :api do
