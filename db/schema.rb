@@ -55,7 +55,7 @@ ActiveRecord::Schema.define(version: 20160302231228) do
     t.date     "DOB"
     t.string   "college_major"
     t.date     "year_of_graduation"
-    t.string   "graduated?"
+    t.string   "graduated"
     t.string   "race"
     t.string   "household_size"
     t.string   "household_income"

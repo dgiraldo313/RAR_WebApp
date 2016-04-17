@@ -16,35 +16,47 @@
 		  <% end %>
 
 		  	<fieldset class="form-group">
-			    <%= f.text_field :first_name,placeholder: 'First Name', :class => "form-control" %>
+			    <%= f.text_field :first_name,placeholder: 'First Name', :class => "form-control", :required => true %>
 			</fieldset>
 		  	<fieldset class="form-group">
-			    <%= f.text_field :last_name, placeholder: 'Last Name', :class => "form-control" %>
+			    <%= f.text_field :last_name, placeholder: 'Last Name', :class => "form-control", :required => true %>
 			</fieldset>
 		  	<fieldset class="form-group">
-			    <%= f.text_field :email, placeholder: 'Email', :class => "form-control"  %>
+			    <%= f.text_field :email, placeholder: 'Email', :class => "form-control", :required => true  %>
 		    </fieldset>
 		  	<fieldset class="form-group">
-			    <%= f.label :gender %>
-			    <%= f.radio_button :gender,  "Male"  %>
+			    <%= f.label :sex%>
+			    <%= f.radio_button :sex,  "Male", :checked => true  %>
 				  <%= f.label "Male" %>
-			    <%= f.radio_button :gender,  "Female"  %>
+			    <%= f.radio_button :sex,  "Female"  %>
 				  <%= f.label "Female" %>
-			</fieldset>
+				</fieldset>
 		  	<fieldset class="form-group">
-			    <%= f.label :DOB %>
-			    <%= f.date_select :DOB, :start_year => 1950, :class => "form-control" %>
+			    <%= f.label "Date of Birth"%>
+			    <%= f.date_select :DOB, :start_year => 1950, :class => "form-control"%>
 		    </fieldset>
-		  	<fieldset class="form-group">
-			    <%= f.label :education_level %>
-				   <%= f.select :education_level, ['Some high school', 'High school graduate', 'Some college','Trade school/Vocational training',"Associate's degree","Bachelor's degree","Master's degree","Doctorate Degree"], :class => "form-control" %>
-			</fieldset>
+				<fieldset class="form-group">
+					<%= f.text_field :college_major, placeholder: 'College Major', :class => "form-control", :required => true  %>
+				</fieldset>
+				<fieldset class="form-group">
+			    <%= f.label :year_of_graduation %>
+			    <%= f.date_select :year_of_graduation, :start_year => 1950, :class => "form-control" %>
+
+		    </fieldset>
+				<fieldset class="form-group">
+					<%= f.label :graduated? %>
+					<%= f.radio_button :graduated,  "Expected", :checked => true %>
+					<%= f.label "Graduated" %>
+					<%= f.radio_button :graduated,  "Graduated" %>
+					<%= f.label "Expected" %>
+				</fieldset>
+
 		  	<fieldset class="form-group">
 			    <%= f.label :race %>
-			    <%= f.select :race, ["White","Hispanic or Latino","Black or African American", "Native American or American Indian", "Asian / Pacific Islander"], :class => "form-control" %>
+			    <%= f.select :race, ["White","Hispanic or Latino","Black or African American", "Native American or American Indian", "Asian / Pacific Islander", "Other"], :class => "form-control" %>
 		    </fieldset>
 		  	<fieldset class="form-group">
-			    <%= f.label :household_size %>
+			    <%= f.label :household_size%>
 			    <%= f.select :household_size, ["1","2","3","4","5","6","7+"], :class => "form-control" %>
 		    </fieldset>
 		  	<fieldset class="form-group">
