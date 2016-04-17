@@ -64,7 +64,7 @@ class PlayersController < ApplicationController
 
   private
   def player_params
-    params.require(:player).permit(:first_name, :last_name,:email,:gender, :DOB, :education_level,:race,:household_size,:household_income, :research_id)
+    params.require(:player).permit(:first_name, :last_name,:email,:gender, :DOB, :sex, :college_major, :year_of_graduation, :graduated , :education_level,:race,:household_size,:household_income, :research_id)
   end
 
   def calculateTotalEarnings(player, new_earnings)
