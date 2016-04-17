@@ -24,11 +24,11 @@ ActiveRecord::Schema.define(version: 20160302231228) do
     t.datetime "last_sign_in_at"
     t.string   "current_sign_in_ip"
     t.string   "last_sign_in_ip"
+    t.string   "first_name"
+    t.string   "last_name"
+    t.boolean  "admin?",                 default: true
     t.datetime "created_at",                            null: false
     t.datetime "updated_at",                            null: false
-    t.string   "first_Name"
-    t.string   "last_Name"
-    t.boolean  "admin?",                 default: true
   end
 
   add_index "admins", ["email"], name: "index_admins_on_email", unique: true, using: :btree
@@ -47,22 +47,24 @@ ActiveRecord::Schema.define(version: 20160302231228) do
   end
 
   create_table "players", force: true do |t|
-    t.datetime "created_at",                     null: false
+    t.datetime "created_at",                       null: false
     t.string   "first_name"
     t.string   "last_name"
     t.string   "email"
-    t.string   "gender"
+    t.string   "sex"
     t.date     "DOB"
-    t.string   "education_level"
+    t.string   "college_major"
+    t.date     "year_of_graduation"
+    t.string   "graduated?"
     t.string   "race"
     t.string   "household_size"
     t.string   "household_income"
-    t.datetime "updated_at",                     null: false
     t.integer  "research_id"
-    t.float    "total_earnings",   default: 0.0
+    t.float    "total_earnings",     default: 0.0
+    t.datetime "updated_at",                       null: false
   end
 
-  create_table "players_researches", id: false, force: true do |t|
+  create_table "players_research", id: false, force: true do |t|
     t.integer "player_id"
     t.integer "research_session_id"
   end
