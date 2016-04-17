@@ -1,35 +1,35 @@
 <!DOCTYPE html>
 <html>
-<head>
-  <title>DrewLab</title>
-  <%= stylesheet_link_tag    "application" %>
-  <%= javascript_include_tag "application" %>
-  <%= csrf_meta_tags %>
-</head>
-<body role="document">
-	<br />
-	<div class="container">
-		<% flash.each do |key, value| %>
-		      <div class="<%= flash_class(key) %>" role="alert">
-		            <%= value %><button class="close" data-dismiss="alert">×</button>
-		      </div>
-		<% end %>
-		
-		<%= yield %>
-	</div>
-	<br />
-	<div class="mastfoot text-center">
-		<div class="inner">
-			<p>
-				Created for the 
-				<a href="http://drew.edu">Drew University Economics Department</a>
-				by 
-				<a href="http://iamdanielgiraldo.com">Daniel Giraldo</a>
-				and
-				<a href="http://idkcode.com">Chris Thurber</a>
-			</p>	
-		</div>
-	</div>
+  <head>
+    <title>DrewLab</title>
+    <%= stylesheet_link_tag    "application" %>
+    <%= javascript_include_tag "application" %>
+    <%= csrf_meta_tags %>
+  </head>
+  <body role="document">
+  	<br />
+  	<div class="container">
+  		<% flash.each do |key, value| %>
+  		      <div class="<%= flash_class(key) %>" role="alert">
+  		            <%= value %><button class="close" data-dismiss="alert">×</button>
+  		      </div>
+  		<% end %>
 
-</body>
+  		<%= yield %>
+  	</div>
+  	<br />
+  	<div class="mastfoot text-center">
+  		<div class="inner">
+  			<p>
+  				Created for the
+  				<a href="https://www.drew.edu/ebs/faculty/giandomenico-sarolli/">GianDomenico Sarolli</a> and the <a href="http://drew.edu">Drew University Economics Department</a>
+  				by
+  				<a href="http://iamdanielgiraldo.com">Daniel Giraldo</a>
+  				and
+  				<a href="http://idkcode.com">Chris Thurber</a>
+  			</p>
+  		</div>
+  	</div>
+
+  </body>
 </html>
