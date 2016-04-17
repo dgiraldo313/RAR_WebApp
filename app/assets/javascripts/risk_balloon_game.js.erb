@@ -114,7 +114,8 @@ Game.prototype.setBalloonColor = function(){
 //keeps track of isBalloonPopped variable to see if balloon is popped.
 Game.prototype.checkBalloonPop = function(){
     //check to see if balloon is popped
-    if(this.inflation>=this.max_inflation){
+
+    if(Math.random(0,1)<= (1/(this.max_inflation-this.turns+1))){
 			this.isBalloonPopped = true;
     }
     return this.isBalloonPopped;
