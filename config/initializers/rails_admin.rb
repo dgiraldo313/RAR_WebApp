@@ -53,21 +53,14 @@ RailsAdmin.config do |config|
 
     config.model 'Admin' do
       edit do
-        field :first_Name
-        field :last_Name
+        # fields comment it out because it was causing error, since fields don't exist in database
+        # field :first_Name
+        # field :last_Name
         field :email
         field :password
       end
     end
 
-    config.model 'Admin' do
-      edit do
-        field :first_Name
-        field :last_Name
-        field :email
-        field :password
-      end
-    end
 
     config.model 'Research' do
       edit do
