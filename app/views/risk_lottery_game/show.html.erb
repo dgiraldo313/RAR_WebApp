@@ -1,0 +1,86 @@
+<script>
+//start game once DOM is loaded
+$(document).ready(function(){
+    //start new game
+    var game = new Game();
+
+    //get all the variables ready
+    game.startGame();
+    //list all the variables for debugging purposes
+    game.listGameVariables();
+
+    //Gets triggered when "inflate" button is clicked
+    $("#inflate").click(function() {
+        game.inflate();
+    });
+    //Gets triggered when "inflate" button is clicked
+    $("#leave").click(function() {
+        game.leaveGame();
+    });
+});
+</script>
+
+<body id="sky">
+  <div id="player_id" style="display:none"><%= @player.id %></div>
+  <div id="next_game_id" style="display:none"><%= @game_id%></div>
+  <script type="text/javascript">
+    $(window).load(function(){
+        $('#instruction-modal').modal('show');
+    });
+  </script>
+  <!-- Instructions Modal -->
+	  <button type="button" class="btn btn-warning pull-right" data-toggle="modal"  onClick="$('#instruction-modal').modal('show')">Instructions</button>
+
+	  <!-- Modal -->
+	  <div class="modal fade" id="instruction-modal" tabindex="-1" role="dialog" aria-labelledby="instruction-modall">
+	    <div class="modal-dialog" role="document">
+	      <div class="modal-content">
+	        <div class="modal-header">
+	          <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+	          <h4 class="modal-title" id="instruction-modal">Instructions for this game</h4>
+	        </div>
+	        <div class="modal-body">
+	          <p>You'll start with $<%= number_with_precision(@risk_balloon_game.initial_cash, :precision => 2) %>. Every time you click "Inflate Balloon," you'll earn $<%= number_with_precision(@risk_balloon_game.cash_increment, :precision => 2) %>. But be careful! Inflate the balloon, too much, and it will pop, and you will lose all of your hard-earned cash!</p>
+	          <p class="text-warning"><small>You can always see the instructions again with the button in the upper right corner of the screen.</small></p>
+	        </div>
+	        <div class="modal-footer">
+	          <button type="button" class="btn btn-primary" onClick="$('#instruction-modal').modal('hide')">Got it!</button>
+	        </div>
+	      </div>
+	    </div>
+	  </div>
+  <!-- End Instructions Modal -->
+
+
+  <div >Total Earnings: $<b id="total_earnings"><%= number_with_precision(@total_earnings, :precision => 2) %></b></div>
+
+    <div id="main-container">
+        <div id="left-container">
+          <div id="balloon">
+              <div id="balloon-head"></div>
+              <div id="balloon-middle"></div>
+              <div id="balloon-tail"></div>
+          </div>
+        </div>
+
+        <div id="right-container">
+            <div class="panel panel-default">
+                <div class="panel-body" id="content">
+                    <div class="description">Total Earned: $<div id="cash-earned">0</div></div>
+                    <br>
+                    <div class="description">Times Inflated: <div id="times-inflated">0</div></div>
+                </div>
+            </div>
+            <div id="button-container">
+                    <div class="btn btn-lg btn-success" id="inflate">
+                      <!--<h4>Inflate Balloon</h4> /  -->
+                      Inflate Balloon
+                  </div>
+                  <div class="btn btn-lg btn-danger" id="leave">
+                      <!--<h4>Leave</h4> / -->
+                      Leave
+                </div>
+            </div>
+        </div>
+    </div>
+</body>
